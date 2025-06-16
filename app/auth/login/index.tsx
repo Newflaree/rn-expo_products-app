@@ -1,29 +1,34 @@
 // React Native
 import { 
   View,
-  Text,
   useWindowDimensions,
   KeyboardAvoidingView,
-  TextInput
+  ScrollView
 } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
 import {
   ThemedButton,
   ThemedText,
   ThemedTextInput,
   ThemedLink
 } from '@/presentation/theme/components';
+import { useThemeColor } from '@/presentation/theme/hooks/useThemeColor';
 
 
 const LoginScreen = () => {
   const { height } = useWindowDimensions();
+  const backgroundColor = useThemeColor( {}, 'background' );
 
   return (
     <KeyboardAvoidingView
       behavior='padding'
       style={{ flex: 1 }}
     >
-      <ScrollView style={{ paddingHorizontal: 40 }}>
+      <ScrollView
+        style={{
+          paddingHorizontal: 40,
+          backgroundColor: backgroundColor
+        }}
+      >
         <View style={{ paddingTop: height * 0.35 }}>
           <ThemedText type='title'>Ingresar</ThemedText>
           <ThemedText style={{ color: 'gray' }}>Por favor, ingrese para continuar</ThemedText>
