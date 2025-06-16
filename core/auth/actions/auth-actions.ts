@@ -1,6 +1,7 @@
 import { productsApi } from '../api/productsApi';
 import { User } from '../interfaces/user';
 
+
 export interface AuthResponse {
   id: string;
   email: string;
