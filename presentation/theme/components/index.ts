@@ -1,3 +1,3 @@
 export * from './ThemedText';
 export * from './ThemedView';
-export * from './ThemedInput';
+export * from './ThemedTextInput';

@@ -7,7 +7,7 @@ import {
   TextInput
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ThemedText, ThemedInput } from '@/presentation/theme/components';
+import { ThemedText, ThemedTextInput } from '@/presentation/theme/components';
 
 
 const LoginScreen = () => {
@@ -26,14 +26,14 @@ const LoginScreen = () => {
 
         { /*Email y Password*/ }
         <View>
-          <ThemedInput
+          <ThemedTextInput
             placeholder='Correo electrónico'
             keyboardType='email-address'
             autoCapitalize='none'
             icon='mail-outline'
           />
 
-          <ThemedInput
+          <ThemedTextInput
             placeholder='Contraseña'
             secureTextEntry
             autoCapitalize='none'
