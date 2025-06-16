@@ -10,7 +10,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 import {
   ThemedButton,
   ThemedText,
-  ThemedTextInput
+  ThemedTextInput,
+  ThemedLink
 } from '@/presentation/theme/components';
 
 
@@ -51,12 +52,17 @@ const LoginScreen = () => {
           Ingresar
         </ThemedButton>
 
+        <View style={{ marginTop: 50 }} />
+
         <View style={{
           flexDirection: 'row',
           justifyContent: 'center',
           alignItems: 'center'
         }}>
           <ThemedText>¿No tienes cuente?</ThemedText>
+          <ThemedLink href='/auth/register' style={{ marginHorizontal: 5 }}>
+            Crear Cuenta
+          </ThemedLink>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
