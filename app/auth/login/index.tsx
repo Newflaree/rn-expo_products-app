@@ -1,15 +1,47 @@
 // React Native
 import { 
   View,
-  Text
+  Text,
+  useWindowDimensions,
+  KeyboardAvoidingView,
+  TextInput
 } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { ThemedText, ThemedInput } from '@/presentation/theme/components';
 
 
 const LoginScreen = () => {
+  const { height } = useWindowDimensions();
+
   return (
-    <View>
-      <Text>LoginScreen</Text>
-    </View>
+    <KeyboardAvoidingView
+      behavior='padding'
+      style={{ flex: 1 }}
+    >
+      <ScrollView style={{ paddingHorizontal: 40 }}>
+        <View style={{ paddingTop: height * 0.35 }}>
+          <ThemedText type='title'>Ingresar</ThemedText>
+          <ThemedText style={{ color: 'gray' }}>Por favor, ingrese para continuar</ThemedText>
+        </View>
+
+        { /*Email y Password*/ }
+        <View>
+          <ThemedInput
+            placeholder='Correo electrónico'
+            keyboardType='email-address'
+            autoCapitalize='none'
+            icon='mail-outline'
+          />
+
+          <ThemedInput
+            placeholder='Contraseña'
+            secureTextEntry
+            autoCapitalize='none'
+            icon='lock-closed-outline'
+          />
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
