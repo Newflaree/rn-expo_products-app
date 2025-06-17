@@ -28,8 +28,8 @@ const LoginScreen = () => {
 
   const [ isPosting, setIsPosting ] = useState( false );
   const [ form, setForm ] = useState({
-    email: '',
-    password: ''
+    email: 'test2@email.com',
+    password: 'Abc123'
   });
 
   const onLogin = async () => {
