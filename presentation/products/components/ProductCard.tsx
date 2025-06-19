@@ -39,7 +39,7 @@ export const ProductCard = ({ product }: Props) => {
           />
         ) : (
           <Image
-            source={{ uri: product.images[0] }}
+            source={{ uri: `${ product.images[0] }` }}
             style={{ flex: 1, height: 200, width: '100%' }}
           />
         )}
