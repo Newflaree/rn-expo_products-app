@@ -20,7 +20,8 @@ import { Ionicons } from '@expo/vector-icons';
 import {
   ThemedTextInput,
   ThemedView,
-  ThemedButtonGroup
+  ThemedButton,
+  ThemedButtonGroup,
 } from '@/presentation/theme/components';
 import { ProductImages } from '@/presentation/products/components';
 // Hooks
@@ -126,7 +127,26 @@ const ProductScreen = () => {
             selectedOptions={ product.sizes }
             onSelect={ ( options ) => console.log({ options }) }
           />
+
+          <ThemedButtonGroup
+            options={[ 'kid', 'men', 'women', 'unisex' ]}
+            selectedOptions={ [product.gender] }
+            onSelect={ ( options ) => console.log({ options }) }
+          />
         </ThemedView>
+
+        <View style={{
+          marginHorizontal: 10,
+          marginBottom: 50,
+          marginTop: 20
+        }}>
+          <ThemedButton
+            onPress={ () => console.log( 'Guardar' ) }
+            icon='save-outline'
+          >
+            Guardar
+          </ThemedButton>
+        </View>
       </ScrollView>
     </KeyboardAvoidingView>
   );
