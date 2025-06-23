@@ -19,8 +19,10 @@ import { Ionicons } from '@expo/vector-icons';
 // Components
 import {
   ThemedTextInput,
-  ThemedView
+  ThemedView,
 } from '@/presentation/theme/components';
+import { ProductImages } from '@/presentation/products/components';
+// Hooks
 import { useProduct } from '@/presentation/products/hooks';
 
 
@@ -63,7 +65,10 @@ const ProductScreen = () => {
       behavior={ Platform.OS === 'ios' ? 'padding' : undefined }
     >
       <ScrollView>
-        {/* TODO: Product Images */}
+        <ProductImages
+          images={ product.images }
+        />
+
         <ThemedView style={{ marginHorizontal: 10, marginTop: 20 }}>
           <ThemedTextInput
             placeholder='Título'
