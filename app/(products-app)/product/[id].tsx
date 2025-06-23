@@ -20,6 +20,7 @@ import { Ionicons } from '@expo/vector-icons';
 import {
   ThemedTextInput,
   ThemedView,
+  ThemedButtonGroup
 } from '@/presentation/theme/components';
 import { ProductImages } from '@/presentation/products/components';
 // Hooks
@@ -114,6 +115,16 @@ const ProductScreen = () => {
               flex: 1,
               marginHorizontal: 5
             }}
+          />
+        </ThemedView>
+
+        <ThemedView style={{
+          marginHorizontal: 10
+        }}>
+          <ThemedButtonGroup
+            options={[ 'XS', 'S', 'M', 'L', 'XL', 'XXL' ]}
+            selectedOptions={ product.sizes }
+            onSelect={ ( options ) => console.log({ options }) }
           />
         </ThemedView>
       </ScrollView>
