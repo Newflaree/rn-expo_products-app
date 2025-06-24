@@ -14,7 +14,6 @@ export const ProductImages = ({ images }: Props) => {
   if ( images.length === 0 ) return (
     <View style={{
       flex: 1,
-      justifyContent: 'center',
       alignItems: 'center',
     }}>
       <Image

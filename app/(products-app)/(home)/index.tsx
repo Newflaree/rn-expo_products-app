@@ -4,7 +4,8 @@ import {
   View,
   Text
 } from 'react-native';
-import { ThemedText } from '@/presentation/theme/components/ThemedText';
+import { router } from 'expo-router';
+import { ThemedText, FAB } from '@/presentation/theme/components';
 import { useThemeColor } from '@/presentation/theme/hooks/useThemeColor';
 import { useProducts } from '@/presentation/products/hooks/useProducts';
 import { ProductList } from '@/presentation/products/components';
@@ -31,6 +32,11 @@ const HomeScreen = () => {
       <ProductList
         products={ productsQuery.data?.pages.flatMap( page => page ) ?? [] }
         loadNextPage={ loadNextPage }
+      />
+
+      <FAB
+        iconName='add-outline'
+        onPress={ () => router.push('/(products-app)/product/new') }
       />
     </View>
   );
