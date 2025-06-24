@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 
 import { useThemeColor } from '@/presentation/theme/hooks/useThemeColor';
-import { ThemedText } from '@/presentation/theme/components';
+import { ThemedText } from '@/presentation/theme/components/ThemedText';
 
 
 interface Props {

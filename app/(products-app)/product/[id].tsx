@@ -15,6 +15,7 @@ import {
   Redirect
 } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+// Formik
 import { Formik } from 'formik';
 
 // Components
@@ -22,7 +23,7 @@ import {
   ThemedTextInput,
   ThemedView,
   ThemedButton,
-  ThemedButtonGroup,
+  ThemedButtonGroup
 } from '@/presentation/theme/components';
 import { ProductImages } from '@/presentation/products/components';
 // Hooks
@@ -66,7 +67,7 @@ const ProductScreen = () => {
   return (
     <Formik
       initialValues={ product }
-      onSubmit={ ( productLike ) => productMutation.mutate( productLike ) }
+      onSubmit={ productMutation.mutate }
     >
       { 
         ({ values, handleSubmit, handleChange, setFieldValue }) => (
