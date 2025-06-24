@@ -2,11 +2,11 @@
 import { 
   StyleSheet,
   View,
-  Text,
   TouchableOpacity
 } from 'react-native';
 
 import { useThemeColor } from '@/presentation/theme/hooks/useThemeColor';
+import { ThemedText } from '@/presentation/theme/components';
 
 
 interface Props {
@@ -33,7 +33,7 @@ export const ThemedButtonGroup = ({ options, selectedOptions, onSelect }: Props)
               }
             ]}
           >
-            <Text
+            <ThemedText
               adjustsFontSizeToFit
               numberOfLines={ 1 }
               style={[
@@ -42,7 +42,7 @@ export const ThemedButtonGroup = ({ options, selectedOptions, onSelect }: Props)
               ]}
             >
               { option[0].toUpperCase() + option.slice( 1 ) }
-            </Text>
+            </ThemedText>
           </TouchableOpacity>
         ))
       }

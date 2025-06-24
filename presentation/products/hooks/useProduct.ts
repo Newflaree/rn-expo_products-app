@@ -1,5 +1,13 @@
-import { useQuery } from '@tanstack/react-query';
+import { Alert } from 'react-native';
+import {
+  useMutation,
+  useQuery
+} from '@tanstack/react-query';
+
 import { getProductById } from '@/core/products/actions';
+import { Product } from '@/core/products/interfaces/product.interface';
+
+
 
 
 export const useProduct = ( productId: string ) => {
@@ -9,7 +17,22 @@ export const useProduct = ( productId: string ) => {
     staleTime: 1000 * 60 * 60
   });
 
+  const productMutation = useMutation({
+    mutationFn: async ( data: Product ) =>  {
+      // TODO: dispatch save action
+      console.log( data );
+      return data;
+    },
+    onSuccess: ( data: Product ) => {
+      // TODO: Invalidate products queries
+      Alert.alert( 'Producto Guardado', `${ data.title } se guardó correctamente` );
+    }
+  });
+
+  // TODO: Maintenande id product when it's a new product
+
   return {
     productQuery,
+    productMutation
   }
 }
