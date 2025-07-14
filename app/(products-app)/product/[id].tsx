@@ -12,14 +12,15 @@ import {
 import {
   useNavigation,
   useLocalSearchParams,
-  Redirect
+  Redirect,
+  router
 } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
 // Formik
 import { Formik } from 'formik';
 
 // Components
 import {
+  MenuIconButton,
   ThemedTextInput,
   ThemedView,
   ThemedButton,
@@ -38,7 +39,10 @@ const ProductScreen = () => {
 
   useEffect( () => {
     navigation.setOptions({
-      headerRight: () => ( <Ionicons name='camera-outline' size={ 25 } /> )
+      headerRight: () => <MenuIconButton
+        onPress={ () => router.push( '/camera' ) }
+        icon='camera-outline'
+      />
     });
   }, [] );
 
