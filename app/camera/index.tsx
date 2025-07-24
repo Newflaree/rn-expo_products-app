@@ -1,6 +1,9 @@
 import { useState, useRef } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, useWindowDimensions } from 'react-native';
 import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
+import { router } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
+
 import { ThemedText } from '@/presentation/theme/components';
 import { useThemeColor } from '@/presentation/theme/hooks/useThemeColor';
 
@@ -48,24 +51,39 @@ export default function CameraScreen() {
     // TODO: Save image
   }
 
+  const onReturnCancel = () => {
+    // TODO: Clear state
+    router.dismiss();
+  }
+
   const toggleCameraFacing = () => {
     setFacing(current => (current === 'back' ? 'front' : 'back'));
   }
 
   return (
     <View style={styles.container}>
-      <CameraView style={styles.camera} facing={facing} ref={ cameraRef }>
+      <CameraView
+        style={ StyleSheet.absoluteFillObject }
+        facing={facing}
+        ref={ cameraRef }
+      />
 
+      <View style={ styles.overlay } pointerEvents='box-none'>
         <ShutterButton
           onPress={ onShutterButtonPress }
         />
+
+        <FlipCameraButton onPress={ toggleCameraFacing }  />
+        { /*TODO: GalleryButton*/ }
+        <GalleryButton />
+        <ReturnCancelButton onPress={ onReturnCancel }  />
+      </View>
+
           { /*
           <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
             <Text style={styles.text}>Flip Camera</Text>
           </TouchableOpacity>
           */ }
-
-      </CameraView>
     </View>
   );
 }
@@ -93,10 +111,64 @@ const ShutterButton = ({ onPress = () => {} }) => {
   );
 }
 
+const FlipCameraButton = ({ onPress = () => {} }) => {
+  return (
+    <TouchableOpacity
+      onPress={ onPress }
+      style={ styles.flipCameraButton }
+    >
+      <Ionicons
+        name='camera-reverse-outline'
+        size={ 30 }
+        color='white'
+      />
+    </TouchableOpacity>
+  );
+}
+
+const GalleryButton = ({ onPress = () => {} }) => {
+  return (
+    <TouchableOpacity
+      onPress={ onPress }
+      style={ styles.galleryButton }
+    >
+      <Ionicons
+        name='images-outline'
+        size={ 30 }
+        color='white'
+      />
+    </TouchableOpacity>
+  );
+}
+
+const ReturnCancelButton = ({ onPress = () => {} }) => {
+  return (
+    <TouchableOpacity
+      onPress={ onPress }
+      style={ styles.returnCancelButton }
+    >
+      <Ionicons
+        name='arrow-back-outline'
+        size={ 30 }
+        color='white'
+      />
+    </TouchableOpacity>
+  );
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    backgroundColor: 'black',
+  },
+  permissionContainer: {
+    marginHorizontal: 30,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
   },
   message: {
     textAlign: 'center',
