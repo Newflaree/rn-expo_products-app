@@ -1,10 +1,9 @@
 // React Native
 import { 
-  View,
-  Text,
   TouchableOpacity
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+
 import { useThemeColor } from '../../theme/hooks/useThemeColor';
 import { useAuthStore } from '../store/useAuthStore';
 
@@ -20,7 +19,7 @@ export const LogoutIconButton = () => {
     >
       <Ionicons
         name='log-out-outline'
-        size={ 24 }
+        size={ 20 }
         color={ primaryColor }
       />
     </TouchableOpacity>

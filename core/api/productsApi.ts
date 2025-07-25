@@ -16,9 +16,9 @@ const productsApi = axios.create({
   baseURL: API_URL 
 });
 
-// TODO: Interceptores
+// Interceptors
 productsApi.interceptors.request.use( async ( config ) => {
-  // TODO Check token on secure storage
+  // Check token on secure storage
   const token = await SecureStorageAdapter.getItem( 'token' );
 
   if ( token ) {
