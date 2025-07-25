@@ -27,15 +27,24 @@ import {
   ThemedButtonGroup
 } from '@/presentation/theme/components';
 import { ProductImages } from '@/presentation/products/components';
+import { useCameraStore } from '@/presentation/store/useCameraStore';
 // Hooks
 import { useProduct } from '@/presentation/products/hooks';
 
 
 const ProductScreen = () => {
+  const { selectedImages, clearImages } = useCameraStore();
+
   const { id } = useLocalSearchParams();
   const navigation = useNavigation();
 
   const { productQuery, productMutation } = useProduct( `${ id }` );
+
+  useEffect( () => {
+    return () => {
+      clearImages();
+    }
+  }, [] );
 
   useEffect( () => {
     navigation.setOptions({
@@ -80,7 +89,7 @@ const ProductScreen = () => {
           >
             <ScrollView>
               <ProductImages
-                images={ values.images }
+                images={[ ...product.images, ...selectedImages ]}
               />
 
               <ThemedView style={{ marginHorizontal: 10, marginTop: 20 }}>

@@ -15,8 +15,11 @@ import { Ionicons } from '@expo/vector-icons';
 
 import { ThemedText } from '@/presentation/theme/components';
 import { useThemeColor } from '@/presentation/theme/hooks/useThemeColor';
+import { useCameraStore } from '@/presentation/store/useCameraStore';
 
 export default function CameraScreen() {
+  const { addSelectedImage } = useCameraStore();
+
   const [ facing, setFacing ] = useState<CameraType>('back');
   const [ cameraPermission, requestCameraPermission ] = useCameraPermissions();
   const [ mediaPermission, requestMediaPermission ] = MediaLibrary.usePermissions();
@@ -78,8 +81,6 @@ export default function CameraScreen() {
       quality: 0.7
     });
 
-    console.log( picture );
-
     if ( !picture.uri ) return;
 
     setSelectedImage( picture.uri );
@@ -95,6 +96,7 @@ export default function CameraScreen() {
   const onPictureAccepted = async () => {
     if ( !selectedImage ) return;
     await MediaLibrary.createAssetAsync( selectedImage );
+    addSelectedImage( selectedImage );
     router.dismiss();
   }
 
