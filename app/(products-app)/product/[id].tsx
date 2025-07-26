@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { 
   ActivityIndicator,
   KeyboardAvoidingView,
+  RefreshControl,
   ScrollView,
   View,
   Platform
@@ -90,7 +91,16 @@ const ProductScreen = () => {
           <KeyboardAvoidingView
             behavior={ Platform.OS === 'ios' ? 'padding' : undefined }
           >
-            <ScrollView>
+            <ScrollView
+              refreshControl={
+                <RefreshControl
+                  refreshing={ productQuery.isFetching }
+                  onRefresh={ async () => {
+                    await productQuery.refetch();
+                  }}
+                />
+              }
+            >
               <ProductImages
                 images={[ ...product.images, ...selectedImages ]}
               />
