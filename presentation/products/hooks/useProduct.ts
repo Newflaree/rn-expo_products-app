@@ -16,9 +16,11 @@ import {
 } from '@/core/products/actions';
 // Interfaces
 import { Product } from '@/core/products/interfaces/product.interface';
+import { useCameraStore } from '@/presentation/store/useCameraStore';
 
 
 export const useProduct = ( productId: string ) => {
+  const { clearImages } = useCameraStore();
   const queryClient = useQueryClient();
   const productIdRef = useRef( productId );
 
@@ -35,6 +37,8 @@ export const useProduct = ( productId: string ) => {
     }),
     onSuccess: ( data: Product ) => {
       productIdRef.current = data.id;
+
+      clearImages();
 
       queryClient.invalidateQueries({
         queryKey: [ 'products', 'infinite' ]
